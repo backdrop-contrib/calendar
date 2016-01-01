@@ -31,7 +31,7 @@ function calendar_views_templates() {
     }
     $items = field_info_instances($entity_type);
     $views_fields = date_views_fields($info['base table']);
-    $with_colorbox = $entity_type == 'node' && module_exists('colorbox') && variable_get('calendar_add_colorbox', 0);
+    $with_colorbox = $entity_type == 'node' && module_exists('colorbox') && config_get('calendar.settings','calendar_add_colorbox');
 
     foreach ($views_fields['name'] as $name => $data) {
 

@@ -9,8 +9,8 @@
  * Implementation of hook_views_plugins
  */
 function calendar_views_plugins() {
-  $views_path = drupal_get_path('module', 'views');
-  $module_path = drupal_get_path('module', 'calendar');
+  $views_path = backdrop_get_path('module', 'views');
+  $module_path = backdrop_get_path('module', 'calendar');
   $theme_path = $module_path;
   module_load_include('inc', 'calendar', 'theme/theme');
 

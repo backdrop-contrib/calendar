@@ -8,7 +8,7 @@
  *  Bind the colorpicker event to the form element
  */
 (function ($) {
-  Drupal.behaviors.field_example_colorpicker = {
+  Backdrop.behaviors.field_example_colorpicker = {
     attach: function(context) {
       $(".edit-calendar-colorpicker").live("focus", function(event) {
         var edit_field = this;

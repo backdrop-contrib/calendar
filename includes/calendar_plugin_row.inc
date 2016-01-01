@@ -119,7 +119,7 @@ class calendar_plugin_row extends views_plugin_row_fields {
               array('system', 'farbtastic'),
             ),
             // Add javascript to trigger the colorpicker.
-            'js' => array(drupal_get_path('module', 'calendar') . '/js/calendar_colorpicker.js'),
+            'js' => array(backdrop_get_path('module', 'calendar') . '/js/calendar_colorpicker.js'),
           ),
         );
       }
@@ -199,7 +199,7 @@ class calendar_plugin_row extends views_plugin_row_fields {
                 array('system', 'farbtastic'),
               ),
               // Add javascript to trigger the colorpicker.
-              'js' => array(drupal_get_path('module', 'calendar') . '/js/calendar_colorpicker.js'),
+              'js' => array(backdrop_get_path('module', 'calendar') . '/js/calendar_colorpicker.js'),
             ),
           );
         }
@@ -248,7 +248,7 @@ class calendar_plugin_row extends views_plugin_row_fields {
               array('system', 'farbtastic'),
             ),
             // Add javascript to trigger the colorpicker.
-            'js' => array(drupal_get_path('module', 'calendar') . '/js/calendar_colorpicker.js'),
+            'js' => array(backdrop_get_path('module', 'calendar') . '/js/calendar_colorpicker.js'),
           ),
         );
       }
@@ -456,7 +456,6 @@ class calendar_plugin_row extends views_plugin_row_fields {
       // Set the item date to the proper display timezone;
       $item_start_date->setTimezone(new dateTimezone($to_zone));
       $item_end_date->setTimezone(new dateTimezone($to_zone));
-
       $event = new stdClass();
       $event->id = $this->id;
       $event->title = $this->title;

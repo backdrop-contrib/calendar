@@ -155,12 +155,12 @@ function template_preprocess_calendar_day(&$vars) {
   // Add optional css
   if ($display_overlap) {
     $overlapped_items = array();
-    drupal_add_css(drupal_get_path('module', 'calendar') . '/css/calendar-overlap.css');
+    backdrop_add_css(backdrop_get_path('module', 'calendar') . '/css/calendar-overlap.css');
     if (empty($view->live_preview) && !empty($vars['scroll_content'])) {
-      drupal_add_js(drupal_get_path('module', 'calendar') . '/js/calendar_overlap.js');
+      backdrop_add_js(backdrop_get_path('module', 'calendar') . '/js/calendar_overlap.js');
     }
     if (empty($vars['scroll_content'])) {
-      drupal_add_css(drupal_get_path('module', 'calendar') . '/css/calendar-overlap-no-scroll.css');
+      backdrop_add_css(backdrop_get_path('module', 'calendar') . '/css/calendar-overlap-no-scroll.css');
     }
   }
 
@@ -366,12 +366,12 @@ function template_preprocess_calendar_week(&$vars) {
 
   // Add optional css
   if ($display_overlap) {
-    drupal_add_css(drupal_get_path('module', 'calendar') . '/css/calendar-overlap.css');
+    backdrop_add_css(backdrop_get_path('module', 'calendar') . '/css/calendar-overlap.css');
     if (empty($view->live_preview) && !empty($vars['scroll_content'])) {
-      drupal_add_js(drupal_get_path('module', 'calendar') . '/js/calendar_overlap.js');
+      backdrop_add_js(backdrop_get_path('module', 'calendar') . '/js/calendar_overlap.js');
     }
     if (empty($vars['scroll_content'])) {
-      drupal_add_css(drupal_get_path('module', 'calendar') . '/css/calendar-overlap-no-scroll.css');
+      backdrop_add_css(backdrop_get_path('module', 'calendar') . '/css/calendar-overlap-no-scroll.css');
     }
     $overlapped_items = array( array(), array(), array(), array(), array(), array(), array());
 
@@ -615,7 +615,7 @@ function theme_calendar_time_row_heading($vars) {
   $curday_date = $vars['curday_date'];
   static $format_hour, $format_ampm;
   if (empty($format_hour)) {
-    $format = variable_get('date_format_short', 'm/d/Y - H:i');
+    $format = config_get('calendar.settings','date_format_short');
     if (substr($start_time, -5) == '00:00' && substr($next_start_time, -5) == '00:00') {
       $limit = array('hour');
     }
