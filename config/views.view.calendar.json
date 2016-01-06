@@ -1,0 +1,543 @@
+{
+    "_config_name": "views.view.calendar",
+    "name": "calendar",
+    "description": null,
+    "tag": "Calendar",
+    "base_table": "users",
+    "human_name": "Calendar",
+    "core": "7",
+    "display": {
+        "default": {
+            "display_title": "Master",
+            "display_plugin": "default",
+            "display_options": {
+                "query": {
+                    "type": "views_query",
+                    "options": {
+                        "query_comment": false
+                    }
+                },
+                "title": "",
+                "link_display": "page_1",
+                "access": {
+                    "type": "perm"
+                },
+                "exposed_form": {
+                    "type": "basic"
+                },
+                "pager": {
+                    "type": "date_views_pager",
+                    "options": {
+                        "date_id": "month",
+                        "pager_position": "top"
+                    }
+                },
+                "style_plugin": "calendar_style",
+                "style_options": {
+                    "name_size": "3",
+                    "with_weekno": "0",
+                    "multiday_theme": "1",
+                    "theme_style": "1",
+                    "max_items": "0"
+                },
+                "row_plugin": "calendar_entity",
+                "fields": {
+                    "name": {
+                        "id": "name",
+                        "table": "users",
+                        "field": "name",
+                        "label": "",
+                        "alter": {
+                            "alter_text": 0,
+                            "make_link": 0,
+                            "absolute": 0,
+                            "word_boundary": 0,
+                            "ellipsis": 0,
+                            "strip_tags": 0,
+                            "trim": 0,
+                            "html": 0
+                        },
+                        "hide_empty": 0,
+                        "empty_zero": 0,
+                        "link_to_user": 1,
+                        "overwrite_anonymous": 0
+                    },
+                    "login": {
+                        "id": "login",
+                        "table": "users",
+                        "field": "login",
+                        "label": "",
+                        "alter": {
+                            "alter_text": 0,
+                            "make_link": 0,
+                            "absolute": 0,
+                            "external": 0,
+                            "replace_spaces": 0,
+                            "trim_whitespace": 0,
+                            "nl2br": 0,
+                            "word_boundary": 1,
+                            "ellipsis": 1,
+                            "strip_tags": 0,
+                            "trim": 0,
+                            "html": 0
+                        },
+                        "element_label_colon": false,
+                        "element_default_classes": 1,
+                        "hide_empty": 0,
+                        "empty_zero": 0,
+                        "hide_alter_empty": 0
+                    }
+                },
+                "sorts": {
+                    "login": {
+                        "id": "login",
+                        "table": "users",
+                        "field": "login"
+                    }
+                }
+            }
+        },
+        "page_1": {
+            "display_title": "Month",
+            "display_plugin": "page",
+            "display_options": {
+                "query": {
+                    "type": "views_query",
+                    "options": []
+                },
+                "defaults": {
+                    "pager": false,
+                    "style_plugin": false,
+                    "style_options": false,
+                    "row_plugin": false,
+                    "row_options": false,
+                    "arguments": false
+                },
+                "pager": {
+                    "type": "date_views_pager",
+                    "options": {
+                        "date_id": "month",
+                        "pager_position": "top",
+                        "link_format": "clean"
+                    }
+                },
+                "style_plugin": "calendar_style",
+                "style_options": {
+                    "calendar_type": "month",
+                    "name_size": "3",
+                    "mini": "0",
+                    "with_weekno": "0",
+                    "multiday_theme": "1",
+                    "theme_style": "1",
+                    "max_items": "0"
+                },
+                "row_plugin": "calendar_entity",
+                "row_options": {
+                    "calendar_date_link": "",
+                    "colors": {
+                        "legend": "type",
+                        "calendar_colors_type": [],
+                        "calendar_colors_vocabulary": []
+                    }
+                },
+                "arguments": {
+                    "date_argument": {
+                        "id": "date_argument",
+                        "table": "users",
+                        "field": "date_argument",
+                        "default_action": "default",
+                        "default_argument_type": "date",
+                        "default_argument_skip_url": 0,
+                        "summary": {
+                            "format": "default_summary"
+                        },
+                        "year_range": "-3:+3",
+                        "granularity": "month",
+                        "add_delta": "yes",
+                        "date_fields": {
+                            "users.login": "users.login"
+                        },
+                        "date_method": "OR",
+                        "date_group": "date"
+                    }
+                },
+                "path": "calendar-login/month",
+                "menu": {
+                    "type": "default tab",
+                    "title": "Month",
+                    "weight": "0",
+                    "context": 0
+                },
+                "tab_options": {
+                    "type": "normal",
+                    "title": "Calendar",
+                    "weight": "0"
+                }
+            }
+        },
+        "page_2": {
+            "display_title": "Week",
+            "display_plugin": "page",
+            "display_options": {
+                "query": {
+                    "type": "views_query",
+                    "options": []
+                },
+                "defaults": {
+                    "pager": false,
+                    "style_plugin": false,
+                    "style_options": false,
+                    "row_plugin": false,
+                    "row_options": false,
+                    "arguments": false
+                },
+                "pager": {
+                    "type": "date_views_pager",
+                    "options": {
+                        "date_id": "week",
+                        "pager_position": "top",
+                        "link_format": "clean"
+                    }
+                },
+                "style_plugin": "calendar_style",
+                "style_options": {
+                    "calendar_type": "week",
+                    "name_size": "3",
+                    "mini": "0",
+                    "with_weekno": "0",
+                    "multiday_theme": "1",
+                    "groupby_times": "hour",
+                    "theme_style": "1",
+                    "max_items": "0"
+                },
+                "row_plugin": "calendar_entity",
+                "arguments": {
+                    "date_argument": {
+                        "id": "date_argument",
+                        "table": "users",
+                        "field": "date_argument",
+                        "default_action": "default",
+                        "default_argument_type": "date",
+                        "default_argument_skip_url": 0,
+                        "summary": {
+                            "format": "default_summary"
+                        },
+                        "year_range": "-3:+3",
+                        "granularity": "week",
+                        "add_delta": "yes",
+                        "date_fields": {
+                            "users.login": "users.login"
+                        },
+                        "date_method": "OR",
+                        "date_group": "date"
+                    }
+                },
+                "path": "calendar-login/week",
+                "menu": {
+                    "type": "tab",
+                    "title": "Week",
+                    "weight": "2",
+                    "context": 0
+                }
+            }
+        },
+        "page_3": {
+            "display_title": "Day",
+            "display_plugin": "page",
+            "display_options": {
+                "query": {
+                    "type": "views_query",
+                    "options": []
+                },
+                "defaults": {
+                    "pager": false,
+                    "style_plugin": false,
+                    "style_options": false,
+                    "row_plugin": false,
+                    "row_options": false,
+                    "arguments": false
+                },
+                "pager": {
+                    "type": "date_views_pager",
+                    "options": {
+                        "date_id": "day",
+                        "pager_position": "top",
+                        "link_format": "clean"
+                    }
+                },
+                "style_plugin": "calendar_style",
+                "style_options": {
+                    "calendar_type": "day",
+                    "name_size": "3",
+                    "mini": "0",
+                    "with_weekno": "0",
+                    "multiday_theme": "1",
+                    "theme_style": "1",
+                    "max_items": "0",
+                    "groupby_times": "hour"
+                },
+                "row_plugin": "calendar_entity",
+                "arguments": {
+                    "date_argument": {
+                        "id": "date_argument",
+                        "table": "users",
+                        "field": "date_argument",
+                        "default_action": "default",
+                        "default_argument_type": "date",
+                        "default_argument_skip_url": 0,
+                        "summary": {
+                            "format": "default_summary"
+                        },
+                        "year_range": "-3:+3",
+                        "granularity": "day",
+                        "add_delta": "",
+                        "date_fields": {
+                            "users.login": "users.login"
+                        },
+                        "date_method": "OR",
+                        "date_group": "date"
+                    }
+                },
+                "path": "calendar-login/day",
+                "menu": {
+                    "type": "tab",
+                    "title": "Day",
+                    "weight": "3",
+                    "context": 0
+                }
+            }
+        },
+        "page": {
+            "display_title": "Year",
+            "display_plugin": "page",
+            "display_options": {
+                "query": {
+                    "type": "views_query",
+                    "options": []
+                },
+                "defaults": {
+                    "pager": false,
+                    "style_plugin": false,
+                    "style_options": false,
+                    "row_plugin": false,
+                    "row_options": false,
+                    "arguments": false,
+                    "fields": false
+                },
+                "pager": {
+                    "type": "date_views_pager",
+                    "options": {
+                        "date_id": "year",
+                        "pager_position": "top",
+                        "link_format": "clean"
+                    }
+                },
+                "style_plugin": "calendar_style",
+                "style_options": {
+                    "calendar_type": "year",
+                    "name_size": "1",
+                    "mini": "0",
+                    "with_weekno": "0",
+                    "multiday_theme": "1",
+                    "theme_style": "1",
+                    "max_items": "0"
+                },
+                "row_plugin": "calendar_entity",
+                "fields": {
+                    "name": {
+                        "id": "name",
+                        "table": "users",
+                        "field": "name",
+                        "label": "",
+                        "alter": {
+                            "alter_text": 0,
+                            "make_link": 0,
+                            "absolute": 0,
+                            "word_boundary": 0,
+                            "ellipsis": 0,
+                            "strip_tags": 0,
+                            "trim": 0,
+                            "html": 0
+                        },
+                        "hide_empty": 0,
+                        "empty_zero": 0,
+                        "link_to_user": 1,
+                        "overwrite_anonymous": 0
+                    },
+                    "login": {
+                        "id": "login",
+                        "table": "users",
+                        "field": "login",
+                        "label": "",
+                        "alter": {
+                            "alter_text": 0,
+                            "make_link": 0,
+                            "absolute": 0,
+                            "external": 0,
+                            "replace_spaces": 0,
+                            "trim_whitespace": 0,
+                            "nl2br": 0,
+                            "word_boundary": 1,
+                            "ellipsis": 1,
+                            "strip_tags": 0,
+                            "trim": 0,
+                            "html": 0
+                        },
+                        "element_label_colon": false,
+                        "element_default_classes": 1,
+                        "hide_empty": 0,
+                        "empty_zero": 0,
+                        "hide_alter_empty": 0
+                    }
+                },
+                "arguments": {
+                    "date_argument": {
+                        "id": "date_argument",
+                        "table": "users",
+                        "field": "date_argument",
+                        "default_action": "default",
+                        "default_argument_type": "date",
+                        "default_argument_skip_url": 0,
+                        "summary": {
+                            "format": "default_summary"
+                        },
+                        "year_range": "-3:+3",
+                        "granularity": "year",
+                        "add_delta": "yes",
+                        "date_fields": {
+                            "users.login": "users.login"
+                        },
+                        "date_method": "OR",
+                        "date_group": "date"
+                    }
+                },
+                "path": "calendar-login/year",
+                "menu": {
+                    "type": "tab",
+                    "title": "Year",
+                    "weight": "4",
+                    "context": 0
+                }
+            }
+        },
+        "block_1": {
+            "display_title": "Block",
+            "display_plugin": "block",
+            "display_options": {
+                "query": {
+                    "type": "views_query",
+                    "options": []
+                },
+                "defaults": {
+                    "use_ajax": false,
+                    "pager": false,
+                    "style_plugin": false,
+                    "style_options": false,
+                    "row_plugin": false,
+                    "row_options": false,
+                    "arguments": false
+                },
+                "use_ajax": true,
+                "pager": {
+                    "type": "date_views_pager",
+                    "options": {
+                        "date_id": "mini"
+                    }
+                },
+                "style_plugin": "calendar_style",
+                "style_options": {
+                    "calendar_type": "month",
+                    "name_size": "1",
+                    "mini": "1",
+                    "with_weekno": "0",
+                    "multiday_theme": "1",
+                    "theme_style": "1",
+                    "max_items": "0"
+                },
+                "row_plugin": "calendar_entity",
+                "arguments": {
+                    "date_argument": {
+                        "id": "date_argument",
+                        "table": "users",
+                        "field": "date_argument",
+                        "default_action": "default",
+                        "default_argument_type": "date",
+                        "default_argument_skip_url": 0,
+                        "summary": {
+                            "format": "default_summary"
+                        },
+                        "year_range": "-3:+3",
+                        "granularity": "month",
+                        "add_delta": "yes",
+                        "date_fields": {
+                            "users.login": "users.login"
+                        },
+                        "date_method": "OR",
+                        "date_group": "date"
+                    }
+                }
+            }
+        },
+        "block_2": {
+            "display_title": "Upcoming",
+            "display_plugin": "block",
+            "display_options": {
+                "query": {
+                    "type": "views_query",
+                    "options": []
+                },
+                "display_description": "Upcoming events block",
+                "defaults": {
+                    "use_more": false,
+                    "pager": false,
+                    "style_plugin": false,
+                    "style_options": false,
+                    "row_plugin": false,
+                    "row_options": false,
+                    "filters": false,
+                    "filter_groups": false
+                },
+                "use_more": true,
+                "use_more_always": true,
+                "pager": {
+                    "type": "some",
+                    "options": {
+                        "items_per_page": "5",
+                        "offset": "0"
+                    }
+                },
+                "style_plugin": "list",
+                "row_plugin": "fields",
+                "row_options": {
+                    "links": 1,
+                    "comments": 0
+                },
+                "filters": {
+                    "date_filter": {
+                        "id": "date_filter",
+                        "table": "users",
+                        "field": "date_filter",
+                        "operator": ">=",
+                        "granularity": "day",
+                        "form_type": "date_select",
+                        "default_date": "now",
+                        "default_to_date": "",
+                        "year_range": "-3:+3",
+                        "add_delta": "yes",
+                        "date_fields": {
+                            "users.login": "users.login"
+                        },
+                        "date_method": "OR",
+                        "date_group": "date"
+                    }
+                },
+                "filter_groups": {
+                    "operator": "AND",
+                    "groups": {
+                        "1": "AND"
+                    }
+                }
+            }
+        }
+    }
+}
