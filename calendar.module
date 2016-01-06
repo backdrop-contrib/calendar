@@ -577,3 +577,15 @@ function calendar_config_info()
   );
   return $prefixes;
 }
+
+
+/**
+ * Implements hook_autoload_info().
+ */
+function calendar_autoload_info()
+{
+  return array(
+    'calendar_plugin_style' => 'includes/calendar_plugin_style.inc',
+    'calendar_plugin_row' => 'includes/calendar_plugin_row.inc'
+  );
+}
