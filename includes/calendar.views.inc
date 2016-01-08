@@ -15,6 +15,7 @@ function calendar_views_plugins() {
   module_load_include('inc', 'calendar', 'theme/theme');
 
   // Limit these plugins to base tables that represent entities.
+  module_load_include('inc', 'date', 'views/date_views.views');
   $base = array_keys(date_views_base_tables());
 
   $data = array(
