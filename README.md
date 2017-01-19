@@ -19,7 +19,8 @@ This is a port from the Drupal module of the same name.
 
 ## Status
 
-This is an initial port of the module ready for testing.
+This is an initial incomplete port of the module, requiring further work
+on the integral views.
 
 
 ## Installation
@@ -48,9 +49,11 @@ This project is GPL v2 software. See the LICENSE.txt file in this
 directory for complete text.
     
         
-## Current porting to Backdrop
+## Porting to Backdrop
 
-Graham Oliver (github.com/Graham-72/)
+Initial porting: Graham Oliver (github.com/Graham-72/)
+- I am not proposing to do more work on this so please feel free
+to take over if you think it worthwhile.
 
 ## Credits
 
@@ -61,6 +64,10 @@ Graham Oliver (github.com/Graham-72/)
 - Geert van Dort (geertvd)
 - Yonas Yanfa (fizk)
 - Karen Stevenson (KarenS)
+
+### Maintainer for Backdrop
+
+- none yet, and no release yet.
 
 
 ### Acknowledgement
