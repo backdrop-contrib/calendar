@@ -388,7 +388,6 @@ class calendar_plugin_row extends views_plugin_row_fields {
       $delta_field = $info['delta_field'];
       $tz_handling = $info['tz_handling'];
       $tz_field    = $info['timezone_field'];
-      $rrule_field = $info['rrule_field'];
       $is_field    = $info['is_field'];
 
       $info = entity_get_info($this->entity_type);
@@ -429,8 +428,8 @@ class calendar_plugin_row extends views_plugin_row_fields {
         $db_tz   = date_get_timezone_db($tz_handling, isset($item->$tz_field) ? $item->$tz_field : $date_info->display_timezone_name);
         $to_zone = date_get_timezone($tz_handling, isset($item->$tz_field) ? $item->$tz_field : $date_info->display_timezone_name);
         if (isset($item['value'])) {
-          $item_start_date = new dateObject($item['value'], $db_tz);
-          $item_end_date   = array_key_exists('value2', $item) ? new dateObject($item['value2'], $db_tz) : $item_start_date;
+          $item_start_date = new BackdropDateTime($item['value'], $db_tz);
+          $item_end_date   = array_key_exists('value2', $item) ? new BackdropDateTime($item['value2'], $db_tz) : $item_start_date;
         }
 
         $cck_field = field_info_field($field_name);
@@ -443,7 +442,7 @@ class calendar_plugin_row extends views_plugin_row_fields {
         $item = $entity->$field_name;
         $db_tz   = date_get_timezone_db($tz_handling, isset($item->$tz_field) ? $item->$tz_field : $date_info->display_timezone_name);
         $to_zone = date_get_timezone($tz_handling, isset($item->$tz_field) ? $item->$tz_field : $date_info->display_timezone_name);
-        $item_start_date = new dateObject($item, $db_tz);
+        $item_start_date = new BackdropDateTime($item, $db_tz);
         $item_end_date   = $item_start_date;
         $entity->date_id = array('calendar.' . $id . '.' . $field_name . '.0');
       }
@@ -527,7 +526,7 @@ class calendar_plugin_row extends views_plugin_row_fields {
     // for each day that this item occupies in this view.
     $now = max($date_info->min_zone_string, $item_start_date->format(DATE_FORMAT_DATE));
     $to  = min($date_info->max_zone_string, $item_end_date->format(DATE_FORMAT_DATE));
-    $next = new DateObject($now . ' 00:00:00', $date_info->display_timezone);
+    $next = new BackdropDateTime($now . ' 00:00:00', $date_info->display_timezone);
     if ($date_info->display_timezone_name != $to_zone) {
       // Make $start and $end (derived from $node) use the timezone $to_zone, just as the original dates do.
       date_timezone_set($next, timezone_open($to_zone));
