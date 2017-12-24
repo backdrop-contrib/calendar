@@ -1,9 +1,9 @@
 name = Calendar
 description = Views plugin to display views containing dates as Calendars.
 dependencies[] = views
-dependencies[] = date_api
-dependencies[] = date_views
+dependencies[] = date
 package = Date-Calendar
 backdrop = 1.x
 type = module
 
+stylesheets[all][] = css/calendar_multiday.css
