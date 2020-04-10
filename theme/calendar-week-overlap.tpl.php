@@ -151,7 +151,7 @@ foreach ($day_names as $key => $value) {
       <td class="<?php print $colclass?>"><div class="inner">&nbsp;</div></td>
       <?php endfor; ?>
      </tr>
-  </thead> 
+  </tbody> 
   </table>
   </div>
   <div class="header-body-divider">&nbsp;</div>
@@ -174,7 +174,7 @@ foreach ($day_names as $key => $value) {
           <?php if ($index == 0 ): ?>
           <td class="first" headers="<?php print $header_ids[$index]; ?>">
           <?php elseif ($index == 7 ) : ?>
-          <td class="last"">
+          <td class="last">
           <?php else : ?>
           <td headers="<?php print $header_ids[$index]; ?>">
           <?php endif; ?>
