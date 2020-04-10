@@ -398,7 +398,10 @@ class calendar_plugin_row extends views_plugin_row_fields {
       $this->title = entity_label($this->entity_type, $entity);
       $uri = entity_uri($this->entity_type, $entity);
       $uri['options']['absolute'] = TRUE;
-      $this->url = url($uri['path'], $uri['options']);
+      $this->url = '';
+      if (isset($uri['path'])) { 
+        $this->url = url($uri['path'], $uri['options']);
+      }
 
       // Retrieve the field value(s) that matched our query from the cached node.
       // Find the date and set it to the right timezone.
