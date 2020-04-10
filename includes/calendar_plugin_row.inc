@@ -399,7 +399,7 @@ class calendar_plugin_row extends views_plugin_row_fields {
       $uri = entity_uri($this->entity_type, $entity);
       $uri['options']['absolute'] = TRUE;
       $this->url = '';
-      if (isset($uri['path'])) { 
+      if (isset($uri['path'])) {
         $this->url = url($uri['path'], $uri['options']);
       }
 
