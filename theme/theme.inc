@@ -775,7 +775,7 @@ function theme_calendar_empty_day($vars) {
  * @param date $start
  *   Start time of the event
  * @param date $end
- *   End tiem of the event
+ *   End time of the event
  * @param array $item
  *   The event to add to the tree
  * @param int $depth
