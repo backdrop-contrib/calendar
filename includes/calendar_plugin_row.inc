@@ -491,7 +491,11 @@ class calendar_plugin_row extends views_plugin_row_fields {
       ));
 
       $entities = $this->explode_values($event);
+      $date_info = $this->date_argument->view->date_info;
+      $from = $date_info->date_range[0];
+      $to = $date_info->date_range[1];
       foreach ($entities as $entity) {
+        if(($entity->date_start<$from && $entity->date_end<$from) || ($entity->date_start>$to && $entity->date_end>$to)) continue;
         switch ($this->options['colors']['legend']) {
           case 'type':
             $this->calendar_node_type_stripe($entity);
