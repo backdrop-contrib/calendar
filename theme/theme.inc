@@ -671,7 +671,6 @@ function theme_calendar_stripe_legend($vars) {
 
     case 'taxonomy':
       $vocabularies = (array) $row_options['colors']['calendar_colors_vocabulary'];
-      $term_colors = $row_options['colors']['calendar_colors_taxonomy'];
       foreach ($vocabularies as $field_name => $vid) {
         $vocab = taxonomy_get_tree($vid);
         foreach ($vocab as $key => $term) {
