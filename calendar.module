@@ -276,7 +276,7 @@ function calendar_node_view($node, $view_mode, $langcode) {
       'attributes' => array('title' => t('View the calendar.')),
     );
     $node->content['links']['calendar'] = array(
-      '#theme' => 'links__node__caledar',
+      '#theme' => 'links__node__calendar',
       '#links' => $links,
       '#attributes' => array('class' => array('links', 'inline')),
     );
