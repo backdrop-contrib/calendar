@@ -430,7 +430,7 @@ class calendar_plugin_row extends views_plugin_row_fields {
         $to_zone = date_get_timezone($tz_handling, isset($item->$tz_field) ? $item->$tz_field : $date_info->display_timezone_name);
         if (isset($item['value'])) {
           $item_start_date = new dateObject($item['value'], $db_tz);
-          $item_end_date   = array_key_exists('value2', $item) ? new dateObject($item['value2'], $db_tz) : $item_start_date;
+          $item_end_date   = (array_key_exists('value2', $item) && !empty($item['value2'])) ? new dateObject($item['value2'], $db_tz) : $item_start_date;
         }
 
         $cck_field = field_info_field($field_name);
