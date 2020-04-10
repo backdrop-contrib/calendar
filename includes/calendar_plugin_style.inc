@@ -672,6 +672,7 @@ class calendar_plugin_style extends views_plugin_style {
     $multiday_theme = !empty($this->date_info->style_multiday_theme) && $this->date_info->style_multiday_theme == '1';
     $first_day = variable_get('date_first_day', 0);
     $cur_cnt = 0;
+    $extra_events = FALSE;
     $total_cnt = 0;
     $ids = array();
 
@@ -798,6 +799,11 @@ class calendar_plugin_style extends views_plugin_style {
                   'wday' => $wday,
                 );
               }
+              elseif (!$extra_events) {
+                // The event we're currently on will never be displaed.
+                // So let's set a flag the make sure more link is set.
+                $extra_events = TRUE;
+              }
 
             }
           }
@@ -806,7 +812,7 @@ class calendar_plugin_style extends views_plugin_style {
     }
 
     // Add a more link if necessary
-    if ($max_events != CALENDAR_SHOW_ALL && $total_cnt > 0 && $cur_cnt < $total_cnt) {
+    if ($max_events != CALENDAR_SHOW_ALL && $total_cnt > 0 && ($cur_cnt < $total_cnt || $extra_events)) {
       $entry = theme('calendar_' . $this->date_info->calendar_type . '_multiple_entity', array(
           'curday' => $curday_date,
           'count' => $total_cnt,
