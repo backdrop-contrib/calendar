@@ -541,7 +541,7 @@ function template_preprocess_calendar_item(&$vars) {
   else {
     foreach ($vars['view']->field as $id => $field) {
       if ($field->options['exclude'] || (!empty($item->is_multi_day) && in_array($id, $multiday_hidden))) {
-        unset($vars['rendered_fields'][$field->field]);
+        unset($vars['rendered_fields'][$id]);
       }
     }
   }
