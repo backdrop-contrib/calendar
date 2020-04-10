@@ -562,7 +562,7 @@ class calendar_plugin_row extends views_plugin_row_fields {
 
       // Get intersection of current day and the node value's duration (as strings in $to_zone timezone).
       $entity->calendar_start = $item_start < $start ? $start : $item_start;
-      $entity->calendar_end = !empty($item_end) ? ($item_end > $end ? $end : $item_end) : $node->calendar_start;
+      $entity->calendar_end = !empty($item_end) ? ($item_end > $end ? $end : $item_end) : $entity->calendar_start;
 
       // Make date objects
       $entity->calendar_start_date = date_create($entity->calendar_start, timezone_open($to_zone));
