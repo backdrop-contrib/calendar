@@ -61,11 +61,8 @@
         $(document).unbind("mousemove", performDrag).unbind("mouseup", endDrag);
       }
      });
-
-     // Size the window
-     calendar_resizeViewport($);
-  }
-};
+    }
+  };
 })(jQuery);
 
 // Scroll the viewport to the first item
@@ -76,12 +73,3 @@ function calendar_scrollToFirst($) {
    }
 }
 
-// Size the single day view
-function calendar_resizeViewport($) {
-  // Size of the browser window
-  var viewportHeight = window.innerHeight ? window.innerHeight : $(window).height();
-  var top = $('#single-day-container').offset().top;
-
-  // Give it a 20 pixel margin at the bottom
-  //$('#single-day-container').height(viewportHeight - top - 20);
-}
