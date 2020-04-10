@@ -2,12 +2,12 @@
 /**
  * @file
  * Template to display a view as a calendar week with overlapping items
- * 
+ *
  * @see template_preprocess_calendar_week.
  *
  * $day_names: An array of the day of week names for the table header.
  * $rows: The rendered data for this week.
- * 
+ *
  * For each day of the week, you have:
  * $rows['date'] - the date for this day, formatted as YYYY-MM-DD.
  * $rows['datebox'] - the formatted datebox for this day.
@@ -17,11 +17,11 @@
  * $rows['items'][$time_period]['hour'] - the formatted hour for a time period.
  * $rows['items'][$time_period]['ampm'] - the formatted ampm value, if any for a time period.
  * $rows['items'][$time_period]['values'] - An array of formatted items for a time period.
- * 
+ *
  * $view: The view.
  * $min_date_formatted: The minimum date for this calendar in the format YYYY-MM-DD HH:MM:SS.
  * $max_date_formatted: The maximum date for this calendar in the format YYYY-MM-DD HH:MM:SS.
- * 
+ *
  */
 $header_ids = array();
 foreach ($day_names as $key => $value) {
@@ -52,8 +52,8 @@ foreach ($day_names as $key => $value) {
   <tbody>
   <tr class="holder"><td class="calendar-time-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td></tr>
     <?php for ($i = 0; $i < $multiday_rows; $i++): ?>
-    <?php 
-      $colpos = 0; 
+    <?php
+      $colpos = 0;
       $rowclass = "all-day";
       if ($i == 0) {
         $rowclass .= " first";
@@ -72,7 +72,7 @@ foreach ($day_names as $key => $value) {
         <?php $cell = (empty($all_day[$j][$i])) ? NULL : $all_day[$j][$i]; ?>
         <?php if($cell != NULL && $cell['filled'] && $cell['wday'] == $j): ?>
           <?php for($colpos; $colpos < $cell['wday']; $colpos++) : ?>
-          <?php 
+          <?php
             $colclass = "calendar-agenda-items multi-day";
             if ($colpos == 0) {
               $colclass .= " first";
@@ -83,7 +83,7 @@ foreach ($day_names as $key => $value) {
           ?>
           <td class="<?php print $colclass?>"><div class="inner">&nbsp;</div></td>
           <?php endfor;?>
-          <?php 
+          <?php
             $colclass = "calendar-agenda-items multi-day";
             if ($colpos == 0) {
               $colclass .= " first";
@@ -99,9 +99,9 @@ foreach ($day_names as $key => $value) {
           </td>
           <?php $colpos += $cell['colspan']; ?>
         <?php endif; ?>
-      <?php endfor; ?>  
+      <?php endfor; ?>
       <?php while($colpos < 7) : ?>
-      <?php 
+      <?php
         $colclass = "calendar-agenda-items multi-day no-entry";
         if ($colpos == 0) {
           $colclass .= " first";
@@ -121,7 +121,7 @@ foreach ($day_names as $key => $value) {
         <span class="calendar-hour"><?php print t('All day', array(), array('context' => 'datetime'))?></span>
       </td>
       <?php for($j = 0; $j < 7; $j++): ?>
-      <?php 
+      <?php
         $colclass = "calendar-agenda-items multi-day no-entry";
         if ($j == 0) {
           $colclass .= " first";
@@ -139,7 +139,7 @@ foreach ($day_names as $key => $value) {
         <span class="calendar-hour">&nbsp;</span>
       </td>
       <?php for($j = 0; $j < 7; $j++): ?>
-      <?php 
+      <?php
         $colclass = "calendar-agenda-items multi-day no-entry";
         if ($j == 0) {
           $colclass .= " first";
@@ -151,7 +151,7 @@ foreach ($day_names as $key => $value) {
       <td class="<?php print $colclass?>"><div class="inner">&nbsp;</div></td>
       <?php endfor; ?>
      </tr>
-  </tbody> 
+  </tbody>
   </table>
   </div>
   <div class="header-body-divider">&nbsp;</div>
@@ -161,8 +161,8 @@ foreach ($day_names as $key => $value) {
       try {
         // Hide container while it renders...  Degrade w/o javascript support
         jQuery('#single-day-container').css('visibility','hidden');
-      }catch(e){ 
-        // swallow 
+      }catch(e){
+        // swallow
       }
     </script>
     <?php endif; ?>
@@ -179,7 +179,7 @@ foreach ($day_names as $key => $value) {
           <td headers="<?php print $header_ids[$index]; ?>">
           <?php endif; ?>
             <?php foreach ($start_times as $time_cnt => $start_time): ?>
-              <?php 
+              <?php
                 if ($time_cnt == 0) {
                   $class = 'first ';
                 }
@@ -232,8 +232,8 @@ try {
 
   // Show it now that it is complete and positioned
   jQuery('#single-day-container').css('visibility','visible');
-}catch(e){ 
-  // swallow 
+}catch(e){
+  // swallow
 }
 </script>
 <?php endif; ?>
