@@ -309,6 +309,8 @@ class calendar_plugin_style extends views_plugin_style {
         $item_end = date_format($item->calendar_end_date, DATE_FORMAT_DATE);
         $time_start = date_format($item->calendar_start_date, 'H:i:s');
         $item->rendered_fields = $this->rendered_fields[$row_index];
+        //set custom class to item
+        $item->classCustom = $this->view->style_plugin->get_row_class($row_index);
         $items[$item_start][$time_start][] = $item;
       }
     }
