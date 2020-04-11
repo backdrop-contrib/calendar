@@ -419,12 +419,12 @@ class calendar_plugin_row extends views_plugin_row_fields {
         $date_delta = 'date_delta_' . $field_name;
         if (isset($row->$date_id)) {
           $delta = $row->$date_delta;
-          $entity->date_id = array('calendar.' . $row->$date_id . '.' . $field_name. '.' . $delta);
+          $entity->date_id = array('calendar-' . $row->$date_id . '-' . $field_name. '-' . $delta);
           $delta_field = $date_delta;
         }
         else {
           $delta = isset($row->$delta_field) ? $row->$delta_field : 0;
-          $entity->date_id = array('calendar.' . $id . '.' . $field_name . '.' . $delta);
+          $entity->date_id = array('calendar-' . $id . '-' . $field_name . '-' . $delta);
         }
 
         $items = field_get_items($this->entity_type, $entity, $field_name, $this->language);
@@ -448,7 +448,7 @@ class calendar_plugin_row extends views_plugin_row_fields {
         $to_zone = date_get_timezone($tz_handling, isset($item->$tz_field) ? $item->$tz_field : $date_info->display_timezone_name);
         $item_start_date = new dateObject($item, $db_tz);
         $item_end_date   = $item_start_date;
-        $entity->date_id = array('calendar.' . $id . '.' . $field_name . '.0');
+        $entity->date_id = array('calendar-' . $id . '-' . $field_name);
       }
 
       // If we don't have a date value, go no further.
