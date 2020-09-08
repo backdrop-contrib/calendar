@@ -1,10 +1,6 @@
 {
   "_config_name": "calendar.settings",
-  "calendar_track_date": 0,
-  "calendar_add_colorbox": 0,
-  "calendar_date_link_": "",
-  "calendar_legend_view_":"",
-  "date_first_day": 0,
-  "date_format_short": "m/d/Y - H:i"
+  "track_date": 0,
+  "add_colorbox": 0
 }
 

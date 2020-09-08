@@ -31,17 +31,17 @@ function calendar_admin_settings() {
 
   $form['#prefix']  = '<h2>Calendar Administration</h2>';
 
-  $form['calendar_track_date'] = array(
+  $form['track_date'] = array(
     '#title' => t('Track current date in session'),
     '#type' => 'radios',
     '#options' => array(0 => t("Never"), 1 => t('For authenticated users'), 2 => t('For all users')),
-    '#default_value' => config_get('calendar.settings','calendar_track_date'),
+    '#default_value' => config_get('calendar.settings','track_date'),
     '#description' => t("Store session information about the user's current date as they move back and forth through the calendar. Without this setting users will revert to the current day each time they choose a new calendar period (year, month, week, or day). With this option set they will move to a day that conforms to the time period they were viewing before they switched. Requires session tracking which is not ordinarily enabled for anonymous users."),
     );
 
-  $form['calendar_add_colorbox'] = array(
+  $form['add_colorbox'] = array(
     '#title' => t('Add Colorbox settings to Node calendar templates'),
-    '#default_value' => config_get('calendar.settings','calendar_add_colorbox'),
+    '#default_value' => config_get('calendar.settings','add_colorbox'),
     '#type' => 'radios',
     '#options' => array(0 => t('No'), 1 => t('Yes')),
     '#description' => t('To try the Colorbox settings, choose the option to add Colorbox settings to the calendar templates. Install and enable the Colorbox module, following the instructions on the Colorbox project page, then create a new calendar from a template using any date field in the Node base table. The calendar will be set up to display the calendar items in a Colorbox.'),
@@ -63,8 +63,8 @@ function calendar_admin_settings() {
  */
 function calendar_admin_settings_submit($form, &$form_state) {
   $config = config('calendar.settings');
-  $config->set('calendar_track_date', $form_state['values']['calendar_track_date']);
-  $config->set('calendar_add_colorbox', $form_state['values']['calendar_add_colorbox']);
+  $config->set('track_date', $form_state['values']['track_date']);
+  $config->set('add_colorbox', $form_state['values']['add_colorbox']);
   $config->save();
   backdrop_set_message(t('The configuration options have been saved.'));
 }
@@ -127,7 +127,7 @@ function calendar_preprocess_date_views_pager(&$vars) {
 function calendar_date_default_argument_alter(&$argument, &$value) {
   global $user;
   $style_options = $argument->view->display_handler->get_option('style_options');
-  $tracking = config_get('calendar.settings','calendar_track_date');
+  $tracking = config_get('calendar.settings','track_date');
   if (!empty($tracking) && ($tracking == 2 || !empty($user->uid))) {
 
     // If this is a default date, i.e. we are visiting a new calendar display,
@@ -154,7 +154,7 @@ function calendar_views_pre_render(&$view) {
   global $user;
 
   $style_options = $view->display_handler->get_option('style_options');
-  $tracking = config_get('calendar.settings','calendar_track_date');
+  $tracking = config_get('calendar.settings','track_date');
   if (!empty($tracking) && ($tracking == 2 || !empty($user->uid))) {
     foreach ($view->argument as $id => &$argument) {
 
@@ -472,7 +472,7 @@ function calendar_block_configure($delta = '') {
       '#type' => 'select',
       '#title' => t('Legend View'),
       '#description' => t('Choose the view display that contains the settings for the stripes that should be displayed in a legend in this block. Note that if you change the stripe values in that view you will need to clear the cache to pick up the new values in this block.'),
-      '#default_value' => config_get('calendar.settings','calendar_legend_view_' . $delta),
+      '#default_value' => config_get('calendar.settings', 'calendar_legend_view_' . $delta),
       '#options' => $options,
     );
     return $form;
