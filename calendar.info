@@ -2,6 +2,7 @@ name = Calendar
 description = Views plugin to display views containing dates as Calendars.
 dependencies[] = views
 dependencies[] = date
+dependencies[] = system (>= 1.17.0)
 package = Date-Calendar
 backdrop = 1.x
 type = module
