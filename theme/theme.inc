@@ -615,7 +615,8 @@ function theme_calendar_time_row_heading($vars) {
   $curday_date = $vars['curday_date'];
   static $format_hour, $format_ampm;
   if (empty($format_hour)) {
-    $format = config_get('calendar.settings','date_format_short');
+    $date_formats = config_get('system.date','formats');
+    $format = $date_formats['short']['pattern'];
     if (substr($start_time, -5) == '00:00' && substr($next_start_time, -5) == '00:00') {
       $limit = array('hour');
     }
