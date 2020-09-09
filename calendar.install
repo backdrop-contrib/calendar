@@ -29,7 +29,6 @@ function calendar_install() {
 function calendar_update_1000() {
   $config = config('calendar.settings');
   $config->set('track_date', update_variable_get('calendar_track_date', 0));
-  $config->set('add_colorbox', update_variable_get('calendar_add_colorbox', 0));
   foreach (node_type_get_types() as $type) {
     $config->set('calendar_date_link_' . $type->type, update_variable_get('calendar_date_link_' . $type->type));
     update_variable_del('calendar_date_link_' . $type->type);
