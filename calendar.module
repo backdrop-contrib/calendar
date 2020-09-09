@@ -448,6 +448,7 @@ function calendar_list_views() {
 function calendar_block_info() {
   $blocks['calendar_legend'] = array(
     'info' => t('Calendar Legend'),
+    'description' => t('Calendar Legend.'),
   );
   return $blocks;
 }
@@ -455,7 +456,7 @@ function calendar_block_info() {
 /**
  * Implementation of hook_block_configure().
  */
-function calendar_block_configure($delta = '') {
+function calendar_block_configure($delta = '', $settings = array()) {
   switch ($delta) {
     case 'calendar_legend':
     $options = calendar_list_views();
@@ -473,7 +474,7 @@ function calendar_block_configure($delta = '') {
 /**
  * Implementation of hook_block_save().
  */
-function calendar_block_save($delta, $edit = array()) {
+function calendar_block_save($delta, &$edit = array()) {
   if ($delta == 'calendar_legend') {
     config_set('calendar.settings','calendar_legend_view_' . $delta, $edit['calendar_legend_view']);
     backdrop_set_message(t('The view for the calendar legend has been set.'));
@@ -483,7 +484,7 @@ function calendar_block_save($delta, $edit = array()) {
 /**
  *  Implementation of hook_block_view().
  */
-function calendar_block_view($delta = '') {
+function calendar_block_view($delta = '', $settings = array(), $contexts = array()) {
   switch ($delta) {
     case 'calendar_legend':
       // Create the content before returning the block
