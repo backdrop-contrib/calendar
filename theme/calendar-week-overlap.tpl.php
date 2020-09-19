@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Template to display a view as a calendar week with overlapping items
+ * Template to display a view as a calendar week with overlapping items.
  *
  * @see template_preprocess_calendar_week.
  *
@@ -21,15 +22,12 @@
  * $view: The view.
  * $min_date_formatted: The minimum date for this calendar in the format YYYY-MM-DD HH:MM:SS.
  * $max_date_formatted: The maximum date for this calendar in the format YYYY-MM-DD HH:MM:SS.
- *
  */
 $header_ids = array();
 foreach ($day_names as $key => $value) {
   $header_ids[$key] = $value['header_id'];
 }
-//dsm('Display: '. $display_type .': '. $min_date_formatted .' to '. $max_date_formatted);
 ?>
-
 <div class="calendar-calendar"><div class="week-view">
   <div id="header-container">
   <table class="full">
@@ -148,7 +146,7 @@ foreach ($day_names as $key => $value) {
           $colclass .= " last";
         }
       ?>
-      <td class="<?php print $colclass?>"><div class="inner">&nbsp;</div></td>
+      <td class="<?php print $colclass; ?>"><div class="inner">&nbsp;</div></td>
       <?php endfor; ?>
      </tr>
   </tbody>
@@ -156,7 +154,7 @@ foreach ($day_names as $key => $value) {
   </div>
   <div class="header-body-divider">&nbsp;</div>
   <div id="single-day-container">
-    <?php if (!empty($scroll_content)) : ?>
+    <?php if (!empty($scroll_content)): ?>
     <script>
       try {
         // Hide container while it renders...  Degrade w/o javascript support
@@ -171,9 +169,9 @@ foreach ($day_names as $key => $value) {
         <tr class="holder"><td class="calendar-time-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td></tr>
         <tr>
           <?php for ($index = 0; $index < 8; $index++): ?>
-          <?php if ($index == 0 ): ?>
+          <?php if ($index == 0): ?>
           <td class="first" headers="<?php print $header_ids[$index]; ?>">
-          <?php elseif ($index == 7 ) : ?>
+          <?php elseif ($index == 7) : ?>
           <td class="last">
           <?php else : ?>
           <td headers="<?php print $header_ids[$index]; ?>">
@@ -189,24 +187,24 @@ foreach ($day_names as $key => $value) {
                 else {
                   $class = '';
                 } ?>
-              <?php if( $index == 0 ): ?>
-              <?php $time = $items[$start_time];?>
-              <div class="<?php print $class?>calendar-agenda-hour">
+              <?php if ($index == 0): ?>
+              <?php $time = $items[$start_time]; ?>
+              <div class="<?php print $class; ?>calendar-agenda-hour">
                 <span class="calendar-hour"><?php print $time['hour']; ?></span><span class="calendar-ampm"><?php print $time['ampm']; ?></span>
               </div>
               <?php else: ?>
-              <div class="<?php print $class?>calendar-agenda-items single-day">
+              <div class="<?php print $class; ?>calendar-agenda-items single-day">
                 <div class="half-hour">&nbsp;</div>
                 <div class="calendar item-wrapper">
                   <div class="inner">
-                    <?php if(!empty($items[$start_time]['values'][$index - 1])) :?>
-                      <?php foreach($items[$start_time]['values'][$index - 1] as $item) :?>
-                        <?php if (isset($item['is_first']) && $item['is_first']) :?>
-                        <div class="item <?php print $item['class']?> first_item">
-                        <?php else : ?>
-                        <div class="item <?php print $item['class']?>">
+                    <?php if (!empty($items[$start_time]['values'][$index - 1])): ?>
+                      <?php foreach ($items[$start_time]['values'][$index - 1] as $item): ?>
+                        <?php if (isset($item['is_first']) && $item['is_first']): ?>
+                          <div class="item <?php print $item['class']; ?> first_item">
+                        <?php else: ?>
+                          <div class="item <?php print $item['class']; ?>">
                         <?php endif; ?>
-                        <?php print $item['entry'] ?>
+                        <?php print $item['entry']; ?>
                         </div>
                       <?php endforeach; ?>
                     <?php endif; ?>
@@ -214,16 +212,16 @@ foreach ($day_names as $key => $value) {
                 </div>
               </div>
               <?php endif; ?>
-            <?php endforeach;?>
+            <?php endforeach; ?>
           </td>
-          <?php endfor;?>
+          <?php endfor; ?>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="single-day-footer">&nbsp;</div>
 </div></div>
-<?php if (!empty($scroll_content)) : ?>
+<?php if (!empty($scroll_content)): ?>
 <script>
 try {
   // Size and position the viewport inline so there are no delays
