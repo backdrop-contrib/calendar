@@ -634,17 +634,15 @@ class calendar_plugin_row extends views_plugin_row_fields {
       return;
     }
 
-    $entity = $result->entity;
-    $term_field_name = $this->options['colors']['taxonomy_field'];
-    if ($terms_for_entity = field_get_items($this->view->base_table, $entity, $term_field_name)) {
-      foreach ($terms_for_entity as $delta => $item) {
-        $term_for_entity = taxonomy_term_load($item['tid']);
-        if (!array_key_exists($term_for_entity->tid, $colors) || $colors[$term_for_entity->tid] == CALENDAR_EMPTY_STRIPE) {
-          continue;
-        }
-        $result->stripe[] = $colors[$term_for_entity->tid];
-        $result->stripe_label[] = $term_for_entity->name;
+    $term_field_name = 'field_' . $this->options['colors']['taxonomy_field'];
+    $terms = $result->row->{$term_field_name};
+    foreach ($terms as $term_key => $term_value) {
+      $term = $term_value['raw']['taxonomy_term'];
+      if (!array_key_exists($term->tid, $colors) || $colors[$term->tid] == CALENDAR_EMPTY_STRIPE) {
+        continue;
       }
+      $result->stripe[] = $colors[$term->tid];
+      $result->stripe_label[] = $term->name;
     }
 
     return;
