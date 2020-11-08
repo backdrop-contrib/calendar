@@ -69,7 +69,9 @@
 function calendar_scrollToFirst($) {
    if ($('div.first_item').size() > 0 ) {
       var y = $('div.first_item').offset().top - $('#single-day-container').offset().top ;
-      $('#single-day-container').scrollTop(y);
+      if ($('#single-day-container').length > 0) {
+        var top = $('#single-day-container').offset().top;
+      }
    }
 }
 
