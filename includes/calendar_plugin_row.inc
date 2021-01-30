@@ -260,20 +260,22 @@ class calendar_plugin_row extends views_plugin_row_fields {
     if ($this->view->base_table == 'node') {
       if (isset($this->view->display['default']->display_options['link_display'])) {
         $default_display = $this->view->display['default']->display_options['link_display'];
-        $path = $this->view->display[$default_display]->handler->get_option('path');
-        // If this display has been set up as a default tab, the current path
-        // is actually the base path, i.e. if the path is 'calendar/month'
-        // and this is a default tab, the path for this display will actually
-        // be 'calendar'.
-        if ($this->view->display[$default_display]->handler->options['menu']['type'] == 'default tab') {
-          $parts = explode('/', $path);
-          array_pop($parts);
-          $path = implode('/', $parts);
-        }
-        calendar_clear_link_path($path);
-        if (!empty($form_state['values']['row_options']['calendar_date_link'])) {
-          $node_type = $form_state['values']['row_options']['calendar_date_link'];
-          calendar_set_link('node', $node_type, $path);
+        if (isset($this->view->display[$default_display])) {
+          $path = $this->view->display[$default_display]->handler->get_option('path');
+          // If this display has been set up as a default tab, the current path
+          // is actually the base path, i.e. if the path is 'calendar/month'
+          // and this is a default tab, the path for this display will actually
+          // be 'calendar'.
+          if ($this->view->display[$default_display]->handler->options['menu']['type'] == 'default tab') {
+            $parts = explode('/', $path);
+            array_pop($parts);
+            $path = implode('/', $parts);
+          }
+          calendar_clear_link_path($path);
+          if (!empty($form_state['values']['row_options']['calendar_date_link'])) {
+            $node_type = $form_state['values']['row_options']['calendar_date_link'];
+            calendar_set_link('node', $node_type, $path);
+          }
         }
       }
     }
