@@ -132,7 +132,14 @@ class calendar_plugin_row extends views_plugin_row_fields {
         $field = field_info_field($name);
         // Select the proper field type.
         if (!empty($field['type']) && $field['type'] == 'taxonomy_term_reference') {
-          $vocab_field_options[$name] = $field_info['label'];
+          if (isset($field_info['label']) && !empty($field_info['label'])) {
+            $vocab_field_options[$name] = $field_info['label'];
+          }
+          else {
+            $bundles = field_info_bundles('taxonomy_term');
+            $vocab = $field['settings']['allowed_values'][0]['vocabulary'];
+            $vocab_field_options[$name] = $bundles[$vocab]['label'];
+          }
         }
       }
       $form['colors']['taxonomy_field'] = array(
