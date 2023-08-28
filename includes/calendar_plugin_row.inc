@@ -160,8 +160,8 @@ class calendar_plugin_row extends views_plugin_row_fields {
       // Get the Vocabulary id's.
       $vocab_vids = array();
       foreach ($vocab_names as $field_name => $vocab_name) {
-          $vocab = taxonomy_vocabulary_machine_name_load($vocab_name);
-          $vocab_vids[$field_name] = $vocab->vid;
+          $vocab = taxonomy_vocabulary_load($vocab_name);
+          $vocab_vids[$field_name] = $vocab->machine_name;
       }
 
       $this->options['colors']['calendar_colors_vocabulary'] = $vocab_vids;

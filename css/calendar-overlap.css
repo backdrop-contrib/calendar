@@ -818,7 +818,7 @@
 .single-day-footer .grippie,
 .header-body-divider .grippie {
   overflow: hidden;
-  background: #eee url("/misc/grippie.png") no-repeat center 2px;
+  background: #eee url("/core/misc/grippie.png") no-repeat center 2px;
   cursor: s-resize;
   height: 3px;
 }
