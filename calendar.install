@@ -17,9 +17,6 @@ function calendar_install() {
   foreach (node_type_get_types() as $type) {
     $config->set('calendar_date_link_' . $type->type, '');
   }
-  foreach (calendar_list_views() as $view => $data) {
-    $config->set('calendar_legend_view_' . $view, '');
-  }
   $config->save();
 }
 
@@ -35,7 +32,8 @@ function calendar_update_1000() {
       update_variable_del('calendar_date_link_' . $type->type);
     }
     foreach (calendar_list_views() as $view => $data) {
-      $config->set('calendar_legend_view_' . $view, update_variable_get('calendar_legend_view_' . $view));
+      // Nothing to convert since it'll depend on the layout and each layout
+      // could have one or more legend block.
       update_variable_del('calendar_legend_view_' . $view);
     }
     $config->save();

@@ -105,7 +105,11 @@ class calendar_plugin_row extends views_plugin_row_fields {
         $form['colors']['calendar_colors_type'][$key] = array(
           '#title' => check_plain($name),
           '#default_value' => isset($colors[$key]) ? $colors[$key] : CALENDAR_EMPTY_STRIPE,
-          '#dependency' => array('edit-row-options-colors-legend' => array('type')),
+          '#states' => array(
+            'visible' => array(
+              ':input[name="row_options[colors][legend]"]' => array('value' => 'type'),
+            ),
+          ),
           '#type' => 'textfield',
           '#size' => 7,
           '#maxlength' => 7,
@@ -148,8 +152,12 @@ class calendar_plugin_row extends views_plugin_row_fields {
         '#default_value' => $this->options['colors']['taxonomy_field'],
         '#description' => t("Select the taxonomy term field to use when setting stripe colors. This works best for vocabularies with only a limited number of possible terms."),
         '#options' => $vocab_field_options,
-        '#dependency' => array('edit-row-options-colors-legend' => array('taxonomy')),
-        );
+        '#states' => array(
+          'visible' => array(
+            ':input[name="row_options[colors][legend]"]' => array('value' => 'taxonomy'),
+          ),
+        ),
+      );
       if (empty($vocab_field_options)) {
         $form['colors']['taxonomy_field']['#options'] = array('' => '');
         $form['colors']['taxonomy_field']['#suffix'] = t('You must add a term field to this view to use taxonomy stripe values. This works best for vocabularies with only a limited number of possible terms.');
@@ -188,11 +196,12 @@ class calendar_plugin_row extends views_plugin_row_fields {
             '#title' => check_plain(t($term->name)),
             '#default_value' => isset($term_colors[$term->tid]) ? $term_colors[$term->tid] : CALENDAR_EMPTY_STRIPE,
             '#access' => !empty($vocab_field_options),
-            '#dependency_count' => 2, // All 2 of the following #dependencies must be met.
-            '#dependency' => array(
-                                   'edit-row-options-colors-legend' => array('taxonomy'),
-                                   'edit-row-options-colors-taxonomy-field' => array($field_name),
-                             ),
+            '#states' => array(
+              'visible' => array(
+                ':input[name="row_options[colors][legend]"]' => array('value' => 'taxonomy'),
+                ':input[name="row_options[colors][taxonomy_field]"]' => array('value' => $field_name),
+              ),
+            ),
             '#type' => 'textfield',
             '#size' => 7,
             '#maxlength' => 7,
@@ -216,24 +225,13 @@ class calendar_plugin_row extends views_plugin_row_fields {
       $colors_group = $this->options['colors']['calendar_colors_group'];
       $options = array();
 
-      // The 7.1 version of OG.
-      if (function_exists('og_label')) {
-        $gids = og_get_all_group();
-        foreach ($gids as $gid) {
-          $options[$gid] = check_plain(t(og_label($gid)));
-        }
-      }
-
-      // The 7.2 version of OG.
-      else {
-        $types = og_get_all_group_entity();
-        foreach ($types as $entity_type => $name) {
-          $gids = og_get_all_group($entity_type);
-          $entities = entity_load($entity_type, $gids);
-          foreach ($entities as $entity) {
-            list($gid) = entity_extract_ids($entity_type, $entity);
-            $options[$gid] = check_plain(t(entity_label($entity_type, $entity)));
-          }
+      $types = og_get_all_group_entity();
+      foreach ($types as $entity_type => $name) {
+        $gids = og_get_all_group($entity_type);
+        $entities = entity_load($entity_type, $gids);
+        foreach ($entities as $entity) {
+          list($gid) = entity_extract_ids($entity_type, $entity);
+          $options[$gid] = check_plain(t(entity_label($entity_type, $entity)));
         }
       }
 
@@ -241,7 +239,11 @@ class calendar_plugin_row extends views_plugin_row_fields {
         $form['colors']['calendar_colors_group'][$gid] = array(
           '#title' => $title,
           '#default_value' => isset($colors_group[$gid]) ? $colors_group[$gid] : CALENDAR_EMPTY_STRIPE,
-          '#dependency' => array('edit-row-options-colors-legend' => array('group')),
+          '#states' => array(
+            'visible' => array(
+              ':input[name="row_options[colors][legend]"]' => array('value' => 'group'),
+            ),
+          ),
           '#type' => 'textfield',
           '#size' => 7,
           '#maxlength' => 7,

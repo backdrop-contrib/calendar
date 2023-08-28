@@ -658,6 +658,9 @@ function theme_calendar_stripe_legend($vars) {
   $view = views_get_view($view_name);
   $view->set_display($display_id);
   $row_options = $view->display_handler->get_option('row_options');
+  if (empty($row_options)) {
+    return '';
+  }
 
   $legend_type = $row_options['colors']['legend'];
   $display_options = $row_options['colors']['calendar_colors_' . $legend_type];
@@ -679,16 +682,7 @@ function theme_calendar_stripe_legend($vars) {
       break;
 
     case 'group':
-      // The 7.1 version of OG.
-      if (function_exists('og_label')) {
-        $gids = og_get_all_group();
-        foreach ($gids as $gid) {
-          $options[$gid] = check_plain(t(og_label($gid)));
-        }
-      }
-
-      // The 7.2 version of OG.
-      else {
+      if (module_exists('og')) {
         $types = og_get_all_group_entity();
         foreach ($types as $entity_type => $name) {
           $gids = og_get_all_group($entity_type);
