@@ -154,16 +154,6 @@ foreach ($day_names as $key => $value) {
   </div>
   <div class="header-body-divider">&nbsp;</div>
   <div id="single-day-container">
-    <?php if (!empty($scroll_content)): ?>
-    <script>
-      try {
-        // Hide container while it renders...  Degrade w/o javascript support
-        jQuery('#single-day-container').css('visibility','hidden');
-      }catch(e){
-        // swallow
-      }
-    </script>
-    <?php endif; ?>
     <table class="full">
       <tbody>
         <tr class="holder"><td class="calendar-time-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td><td class="calendar-day-holder"></td></tr>
@@ -227,10 +217,7 @@ try {
   // Size and position the viewport inline so there are no delays
   calendar_resizeViewport(jQuery);
   calendar_scrollToFirst(jQuery);
-
-  // Show it now that it is complete and positioned
-  jQuery('#single-day-container').css('visibility','visible');
-}catch(e){
+} catch(e){
   // swallow
 }
 </script>
