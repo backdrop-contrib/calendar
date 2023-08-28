@@ -2,7 +2,6 @@
  * Implementation of hook_elements.
  *
  * Much of the colorpicker code was adapted from the Colorpicker module.
- * That module has no stable release yet nor any D6 branch.
  */
 /*
  *  Bind the colorpicker event to the form element
@@ -10,7 +9,7 @@
 (function ($) {
   Backdrop.behaviors.field_example_colorpicker = {
     attach: function(context) {
-      $(".edit-calendar-colorpicker").live("focus", function(event) {
+      $(".edit-calendar-colorpicker").on("focus", null, function(event) {
         var edit_field = this;
         var picker = $(this).closest('div').parent().find(".calendar-colorpicker");
 

@@ -320,13 +320,13 @@ function calendar_set_link($entity_type, $bundle, $path) {
 function calendar_clear_link_bundle($bundle = NULL) {
   if (empty($bundle)) {
     $result = db_select('variable', 'v')
-      ->fields('v', 'name')
+      ->fields('v', array('name'))
       ->condition('name', 'calendar_date_link_%', 'LIKE')
       ->execute()->fetchAll(PDO::FETCH_ASSOC);
   }
   else {
     $result = db_select('variable', 'v')
-      ->fields('v', 'name')
+      ->fields('v', aray('name'))
       ->condition('name', 'calendar_date_link_' . $bundle)
       ->execute()->fetchAll(PDO::FETCH_ASSOC);
   }
