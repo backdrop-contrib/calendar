@@ -7,6 +7,8 @@
 
 /**
  * Preprocess an RSS feed.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_style(&$vars) {
   global $base_url;
@@ -15,6 +17,8 @@ function template_preprocess_calendar_style(&$vars) {
 
 /**
  * Display a month view.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_month(&$vars) {
   $view = $vars['view'];
@@ -75,6 +79,8 @@ function template_preprocess_calendar_month(&$vars) {
 
 /**
  * Display a mini month view.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_mini(&$vars) {
   // Add in all the $vars added by the main calendar preprocessor.
@@ -93,6 +99,8 @@ function template_preprocess_calendar_mini(&$vars) {
 
 /**
  * Display a year view.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_year(&$vars) {
 
@@ -132,6 +140,8 @@ function template_preprocess_calendar_year(&$vars) {
 
 /**
  * Display a day overlap view.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_day_overlap(&$vars) {
   template_preprocess_calendar_day($vars);
@@ -139,6 +149,8 @@ function template_preprocess_calendar_day_overlap(&$vars) {
 
 /**
  * Display a day view.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_day(&$vars) {
   $vars['view']->style_with_weekno = FALSE;
@@ -260,7 +272,7 @@ function template_preprocess_calendar_day(&$vars) {
       'next_start_time' => $next_start_time,
       'curday_date' => $rows['date'],
     );
-    $heading = theme('calendar_time_row_heading', $variables);
+    $heading = (array) theme('calendar_time_row_heading', $variables);
     $grouped_items[$start_time]['hour'] = $heading['hour'];
     $grouped_items[$start_time]['ampm'] = $heading['ampm'];
     foreach ($grouped_items[$start_time]['values'] as $column => &$items) {
@@ -322,6 +334,8 @@ function template_preprocess_calendar_day(&$vars) {
 
 /**
  * Display a week overlap view.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_week_overlap(&$vars) {
   template_preprocess_calendar_week($vars);
@@ -329,6 +343,8 @@ function template_preprocess_calendar_week_overlap(&$vars) {
 
 /**
  * Display a week view.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_week(&$vars) {
   $vars['view']->style_with_weekno = FALSE;
@@ -364,6 +380,7 @@ function template_preprocess_calendar_week(&$vars) {
   $vars['scroll_content'] = !empty($view->date_info->style_theme_style) && $view->date_info->style_theme_style == 1;
 
   // Add optional css.
+  $overlapped_items = array(array(), array(), array(), array(), array(), array(), array());
   if ($display_overlap) {
     backdrop_add_css(backdrop_get_path('module', 'calendar') . '/css/calendar-overlap.css');
     if (empty($view->live_preview) && !empty($vars['scroll_content'])) {
@@ -372,7 +389,6 @@ function template_preprocess_calendar_week(&$vars) {
     if (empty($vars['scroll_content'])) {
       backdrop_add_css(backdrop_get_path('module', 'calendar') . '/css/calendar-overlap-no-scroll.css');
     }
-    $overlapped_items = array(array(), array(), array(), array(), array(), array(), array());
 
     // Locate the first item.
     $first_time = '23:59:59';
@@ -471,7 +487,7 @@ function template_preprocess_calendar_week(&$vars) {
       'next_start_time' => $next_start_time,
       'curday_date' => (isset($row['data'])) ? $row['data']['date'] : NULL,
     );
-    $heading = theme('calendar_time_row_heading', $variables);
+    $heading = (array) theme('calendar_time_row_heading', $variables);
     $grouped_items[$start_time]['hour'] = $heading['hour'];
     $grouped_items[$start_time]['ampm'] = $heading['ampm'];
     $grouped_items[$start_time]['time'] = $start_time;
@@ -525,6 +541,8 @@ function template_preprocess_calendar_week(&$vars) {
 
 /**
  * Implementation of hook_preprocess_calendar_item().
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_item(&$vars) {
   // At the last possible minute we fix the values in rendered_fields so it
@@ -547,6 +565,8 @@ function template_preprocess_calendar_item(&$vars) {
 
 /**
  * Create the calendar date box.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_datebox(&$vars) {
   $date = $vars['date'];
@@ -575,6 +595,8 @@ function template_preprocess_calendar_datebox(&$vars) {
 
 /**
  * Format an calendar month node for display.
+ *
+ * @param array $vars
  */
 function template_preprocess_calendar_month_multiple_entity(&$vars) {
   $view = $vars['view'];
@@ -607,6 +629,10 @@ function template_preprocess_calendar_month_multiple_entity(&$vars) {
 
 /**
  * Format the time row headings in the week and day view.
+ *
+ * @param array $vars
+ *
+ * @return array
  */
 function theme_calendar_time_row_heading($vars) {
   $start_time = $vars['start_time'];
@@ -647,6 +673,10 @@ function theme_calendar_time_row_heading($vars) {
 
 /**
  * Format a node stripe legend.
+ *
+ * @param array $vars
+ *
+ * @return string
  */
 function theme_calendar_stripe_legend($vars) {
   if (empty($vars) || !$view = $vars['view']) {
@@ -706,7 +736,7 @@ function theme_calendar_stripe_legend($vars) {
   foreach ($options as $key => $label) {
     $stripe = array_key_exists($key, $display_options) ? $display_options[$key] : CALENDAR_EMPTY_STRIPE;
     if ($stripe != CALENDAR_EMPTY_STRIPE) {
-      $rows[] = array('<div class="label">' . $label . '</div>', '<div style="background-color:' . $stripe . ';color:' . $stripe . '" class="stripe" title="Key: ' . $label . '">&nbsp;</div>');
+      $rows[] = array('<div class="label">' . check_plain($label) . '</div>', '<div style="background-color:' . $stripe . ';color:' . $stripe . '" class="stripe" title="Key: ' . check_plain($label) . '">&nbsp;</div>');
     }
   }
 
@@ -724,6 +754,10 @@ function theme_calendar_stripe_legend($vars) {
 
 /**
  * Format item stripes.
+ *
+ * @param array $vars
+ *
+ * @return string
  */
 function theme_calendar_stripe_stripe($vars) {
   $item = $vars['item'];
@@ -734,7 +768,7 @@ function theme_calendar_stripe_stripe($vars) {
   if (is_array($item->stripe_label)) {
     foreach ($item->stripe_label as $k => $stripe_label) {
       if (!empty($item->stripe[$k]) && !empty($stripe_label)) {
-        $output .= '<div style="background-color:' . $item->stripe[$k] . ';color:' . $item->stripe[$k] . '" class="stripe" title="Key: ' . $item->stripe_label[$k] . '">&nbsp;</div>' . "\n";
+        $output .= '<div style="background-color:' . $item->stripe[$k] . ';color:' . $item->stripe[$k] . '" class="stripe" title="Key: ' . check_plain($item->stripe_label[$k]) . '">&nbsp;</div>' . "\n";
       }
     }
   }
@@ -744,11 +778,12 @@ function theme_calendar_stripe_stripe($vars) {
 /**
  * Format an empty day on a calendar.
  *
- * @param day
+ * @param array $vars
  *   The day to display.
+ *
+ * @return string
  */
 function theme_calendar_empty_day($vars) {
-  $curday = $vars['curday'];
   $view = $vars['view'];
 
   if ($view->date_info->calendar_type != 'day') {
@@ -764,16 +799,16 @@ function theme_calendar_empty_day($vars) {
  *
  * @param array $overlapped_items
  *   Tree of overlapped items.
- * @param date $start
+ * @param string $start
  *   Start time of the event.
- * @param date $end
+ * @param string $end
  *   End time of the event.
  * @param array $item
  *   The event to add to the tree.
  * @param int $depth
  *   Current depth of the tree.
  *
- * @return rc
+ * @return array
  *   Returns an array with the max depth of the branch and whether an overlap occurred
  */
 function _calc_indents(&$overlapped_items, $start, $end, &$item, $depth = 0) {

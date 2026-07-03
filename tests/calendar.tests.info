@@ -1,0 +1,5 @@
+[CalendarStripeXssTestCase]
+name = Calendar stripe label XSS
+description = Stripe labels are sanitized before being output into the legend and per-item stripe title attributes.
+group = Calendar
+file = calendar_stripe_xss.test

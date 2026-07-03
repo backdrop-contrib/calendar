@@ -1,7 +1,8 @@
 /**
  * calendar calendar table styles
  */
-.calendar-calendar tr.odd, .calendar-calendar tr.even {
+.calendar-calendar tr.odd,
+.calendar-calendar tr.even {
   background-color: #fff;
 }
 .calendar-calendar table {
@@ -67,7 +68,8 @@
 .calendar-calendar td.week {
   width: 1%;
   min-width: 1%;
- }
+}
+
 .calendar-calendar .week {
   clear: both;
   font-style: normal;
@@ -116,7 +118,7 @@
   text-align: center;
   padding: 1px;
   margin: 0;
- }
+}
 
 /**
  * floating day number div
@@ -155,7 +157,7 @@
 }
 
 .calendar-calendar div.title {
-  font-size:.8em;
+  font-size: .8em;
   text-align: center;
 }
 
@@ -179,7 +181,8 @@ table th.mini,
 table.mini td.week {
   padding: 0 1px 0 0;
   margin: 0;
-  }
+}
+
 table td.mini a {
   font-weight: normal;
 }
@@ -202,7 +205,8 @@ table .mini-day-on a {
   width: 100%;
   border: none;
 }
-.mini{
+
+.mini {
   width: 32%;
   vertical-align: top;
 }
@@ -216,6 +220,7 @@ table .mini-day-on a {
   font-size: 1px !important;
   line-height: 1px !important;
 }
+
 .calendar-calendar .day-view .stripe {
   width: 100%;
 }
@@ -408,7 +413,8 @@ table.calendar-legend {
   height: auto;
   min-height: auto;
 }
-.calendar-calendar .week-view .full .calendar-agenda-hour
+
+.calendar-calendar .week-view .full .calendar-agenda-hour,
 .calendar-calendar .month-view .full .single-day .inner .view-item {
   float: left;
   width: 100%;
@@ -456,7 +462,7 @@ table.calendar-legend {
 
 .calendar-calendar .month-view .full td,
 .calendar-calendar .week-view .full td,
-.calendar-calendar .day-view  td {
+.calendar-calendar .day-view td {
   vertical-align: top;
   padding: 1px 2px 0 2px
 }
@@ -521,15 +527,15 @@ table.calendar-legend {
 }
 
 .calendar-calendar .month-view .full td.single-day .inner div,
-.calendar-calendar .month-view .full td.single-day .inner div a ,
+.calendar-calendar .month-view .full td.single-day .inner div a,
 .calendar-calendar .month-view .full td.multi-day .inner div,
-.calendar-calendar .month-view .full td.multi-day .inner div a ,
+.calendar-calendar .month-view .full td.multi-day .inner div a,
 .calendar-calendar .month-view .full td .inner div.calendar.monthview div,
 .calendar-calendar .month-view .full td .inner div.calendar.monthview div a,
 .calendar-calendar .week-view .full td.single-day .inner div,
-.calendar-calendar .week-view .full td.single-day .inner div a ,
+.calendar-calendar .week-view .full td.single-day .inner div a,
 .calendar-calendar .week-view .full td.multi-day .inner div,
-.calendar-calendar .week-view .full td.multi-day .inner div a ,
+.calendar-calendar .week-view .full td.multi-day .inner div a,
 .calendar-calendar .week-view .full td .inner div.calendar.weekview div,
 .calendar-calendar .week-view .full td .inner div.calendar.weekview div a,
 .calendar-calendar .day-view .full td .inner div.view-item,
@@ -681,14 +687,14 @@ table.calendar-legend {
   display: none;
 }
 
-.calendar-calendar .month-view .full td.multi-day  .inner .monthview .continuation,
-.calendar-calendar .week-view .full td.multi-day  .inner .weekview .continuation {
-  float:left;
+.calendar-calendar .month-view .full td.multi-day .inner .monthview .continuation,
+.calendar-calendar .week-view .full td.multi-day .inner .weekview .continuation {
+  float: left;
   margin-right: 3px;
   height: 1.9em;
 }
 
-.calendar-calendar .week-view .full td.multi-day  .inner .weekview .continuation {
+.calendar-calendar .week-view .full td.multi-day .inner .weekview .continuation {
   height: 2.75em;
   padding-top: 0.75em;
   margin-right: 8px;
@@ -744,7 +750,7 @@ table.calendar-legend {
   margin-bottom: 10px;
 }
 
-.view .date-nav-wrapper  {
+.view .date-nav-wrapper {
   position: relative;
   margin-top: 5px;
   width: 100%;
@@ -859,13 +865,13 @@ table.calendar-legend {
 .date-nav div.date-prev,
 .date-nav div.date-next,
 .date-nav {
-  width:auto;
+  width: auto;
 }
 
 ul.calendar-links,
 .region-content ul.calendar-links {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
 }
 
 .year-view div.month-view div.date-nav {
