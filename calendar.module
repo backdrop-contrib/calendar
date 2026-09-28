@@ -29,7 +29,9 @@ function calendar_menu() {
 function calendar_admin_settings() {
   $form = array();
 
-  $form['#prefix']  = '<h2>Calendar Administration</h2>';
+  $form['help'] = array(
+    '#markup' => t("<p>View complete documentation at !link.</p>", array('!link' => l(t('Date and Calendar Documentation'), 'https://github.com/backdrop-contrib/calendar/wiki'))),
+  );
 
   $form['track_date'] = array(
     '#title' => t('Track current date in session'),
@@ -212,16 +214,6 @@ function calendar_views_api() {
  */
 function calendar_display_types() {
   return array('year' => t('Year'), 'month' => t('Month'), 'day' => t('Day'), 'week' => t('Week'));
-}
-
-/**
- * Implementation of hook_help().
- */
-function calendar_help($section, $arg) {
-  switch ($section) {
-    case 'admin/help#calendar':
-      return t("<p>View complete documentation at !link.</p>", array('!link' => l(t('Date and Calendar Documentation'), 'http://drupal.org/node/262062')));
-  }
 }
 
 /**
